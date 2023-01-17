@@ -1,0 +1,15 @@
+.app {
+  @apply relative flex flex-row items-center justify-center min-h-screen;
+
+  & h1 {
+    @apply text-center;
+  }
+}
+
+.wrapper {
+  @apply h-full max-w-3xl;
+}
+
+.card {
+  @apply shadow-lg;
+}
