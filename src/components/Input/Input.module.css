@@ -1,0 +1,3 @@
+.root {
+  @apply block border bg-gray-50 border-gray-200 rounded-sm py-2.5 px-4;
+}

@@ -2,7 +2,7 @@
   @apply relative flex flex-row items-center justify-center min-h-screen;
 
   & h1 {
-    @apply text-center;
+    @apply text-center mb-6;
   }
 }
 
@@ -11,5 +11,5 @@
 }
 
 .card {
-  @apply shadow-lg;
+  @apply flex flex-row flex-wrap justify-center shadow-lg w-full p-6 rounded-md;
 }
