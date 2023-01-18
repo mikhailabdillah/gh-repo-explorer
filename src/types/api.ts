@@ -29,7 +29,7 @@ export type GithubApiRequest = {
 }
 
 export type GithubApiResponse = {
-  tital_count: number
+  total_count: number
   incomplete_results: boolean
   items: GithubUser[]
 }
