@@ -10,7 +10,8 @@
     "lint": "npx eslint src",
     "lint:fix": "pnpm lint --fix",
     "prettier": "npx prettier src --check",
-    "prettier:fix": "pnpm prettier --write"
+    "prettier:fix": "pnpm prettier --write",
+    "postbuild": "pnpm lint:fix && pnpm prettier:fix"
   },
   "dependencies": {
     "@fontsource/poppins": "^4.5.10",
@@ -23,14 +24,18 @@
     "react-use-measure": "^2.1.1"
   },
   "devDependencies": {
+    "@types/eslint": "^8.4.10",
     "@types/react": "^18.0.26",
     "@types/react-dom": "^18.0.9",
+    "@typescript-eslint/eslint-plugin": "^5.48.2",
+    "@typescript-eslint/parser": "^5.48.2",
     "@vitejs/plugin-react": "^3.0.1",
     "autoprefixer": "^10.4.13",
     "eslint": "^8.32.0",
     "eslint-config-prettier": "^8.6.0",
     "eslint-config-react": "^1.1.7",
     "eslint-plugin-jsx-a11y": "^6.7.1",
+    "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.32.1",
     "eslint-plugin-react-hooks": "^4.6.0",
     "postcss": "^8.4.21",
