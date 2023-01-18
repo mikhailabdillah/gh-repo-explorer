@@ -20,16 +20,48 @@ export type GithubUser = {
   site_admin: boolean
 }
 
-export type GithubApiRequest = {
-  q: string
-  sort?: 'followers' | 'repositories' | 'joined'
-  order?: 'desc' | 'asc'
-  per_page?: number
-  page?: number
+export type GithubRepository = {
+  id: number
+  node_id: string
+  name: string
+  full_name: 'string'
+  owner: GithubUser
+  private: boolean
+  html_url: string
+  description: string
+  fork: boolean
+  url: string
+  git_url: string
+  language: null | string
+  forks_count?: number
+  stargazers_count?: number
+  watchers_count?: number
+  size: number
+  is_template: boolean
+  topics: string[]
+  visibility: string
+  pushed_at: Date
+  created_at: Date
+  updated_at: Date
+  permissions: {
+    admin: boolean
+    push: boolean
+    pull: boolean
+  }
 }
 
-export type GithubApiResponse = {
+// export type GithubApiUserRequest = {
+//   q: string
+//   sort?: 'followers' | 'repositories' | 'joined'
+//   order?: 'desc' | 'asc'
+//   per_page?: number
+//   page?: number
+// }
+
+export type GithubApiUserResponse = {
   total_count: number
   incomplete_results: boolean
   items: GithubUser[]
 }
+
+export type GithubApiRepositoryResponse = GithubRepository[]

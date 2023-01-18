@@ -2,12 +2,12 @@
   @apply relative flex flex-row items-center justify-center min-h-screen;
 
   & h1 {
-    @apply text-center mb-6;
+    @apply text-4xl md:text-6xl text-center mb-6;
   }
 }
 
 .wrapper {
-  @apply h-full max-w-3xl;
+  @apply h-full w-full max-w-3xl py-20;
 }
 
 .card {

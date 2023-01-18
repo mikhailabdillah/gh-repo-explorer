@@ -23,23 +23,25 @@ const Collapse: FC<CollapseProps> = ({ title, children }) => {
   const toggle = useCallback(() => setActive((x) => !x), [])
 
   return (
-    <div
-      className={s.root}
-      role='button'
-      tabIndex={0}
-      aria-expanded={isActive}
-      onClick={toggle}
-    >
-      <div className={s.header}>
-        <ChevronRight className={cn(s.icon, { [s.open]: isActive })} />
-        <span className={s.label}>{title}</span>
+    <>
+      <div
+        className={s.root}
+        role='button'
+        tabIndex={0}
+        aria-expanded={isActive}
+        onClick={toggle}
+      >
+        <div className={s.header}>
+          <ChevronRight className={cn(s.icon, { [s.open]: isActive })} />
+          <span className={s.label}>{title}</span>
+        </div>
       </div>
       <a.div style={{ overflow: 'hidden', ...animProps }}>
         <div ref={ref} className={s.content}>
           {children}
         </div>
       </a.div>
-    </div>
+    </>
   )
 }
 

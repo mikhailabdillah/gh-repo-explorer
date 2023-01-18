@@ -4,14 +4,24 @@
 
 .header {
   @apply flex flex-row items-center bg-gray-100 p-4;
+
+  & .label {
+    @apply text-base font-medium;
+  }
 }
 
-.header .label {
-  @apply text-base font-medium;
+[aria-expanded='true'] {
+  & .header {
+    @apply bg-primary text-white;
+  }
+
+  & .icon {
+    @apply text-white;
+  }
 }
 
 .content {
-  @apply pt-3 overflow-hidden px-8;
+  @apply pt-3 overflow-hidden;
 }
 
 .icon {
