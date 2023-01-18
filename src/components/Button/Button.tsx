@@ -4,6 +4,7 @@ import cn from 'clsx'
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   Component?: string | JSXElementConstructor<any>
 }
 

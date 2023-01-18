@@ -21,6 +21,10 @@ function App() {
       .then((res) => setData(res.data))
   }
 
+  const handleSearch = async () => {
+    await fetchData()
+  }
+
   return (
     <main className={s.app}>
       <div className={s.wrapper}>
@@ -34,7 +38,8 @@ function App() {
                 value={value}
                 onChange={(e) => setValue(e.target.value)}
               />
-              <Button className='w-2/6' onClick={() => fetchData()}>
+              {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
+              <Button className='w-2/6' onClick={handleSearch}>
                 Search
               </Button>
             </div>
@@ -42,7 +47,7 @@ function App() {
           {/* Lists */}
           <div className='w-full mt-4'>
             {data?.items.map((item) => (
-              <div role={'group'} className='mb-4'>
+              <div role={'group'} key={item.id} className='mb-4'>
                 <Collapse title={item.login}>
                   {item.repos_url}
                   {/* <ul>

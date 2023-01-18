@@ -33,6 +33,7 @@ module.exports = {
     '@typescript-eslint/no-explicit-any': 'warn',
     'react/react-in-jsx-scope': 0,
     'jsx-a11y/rule-name': 0,
+    'jsx-a11y/click-events-have-key-events': 0,
   },
   settings: {
     react: {

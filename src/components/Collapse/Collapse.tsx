@@ -1,4 +1,4 @@
-import React, { FC, ReactNode, useState } from 'react'
+import React, { FC, ReactNode, useState, useCallback } from 'react'
 import cn from 'clsx'
 import s from './Collapse.module.css'
 import { ChevronRight } from '../../icons'
@@ -20,7 +20,7 @@ const Collapse: FC<CollapseProps> = ({ title, children }) => {
     opacity: isActive ? 1 : 0,
   })
 
-  const toggle = () => setActive((x) => !x)
+  const toggle = useCallback(() => setActive((x) => !x), [])
 
   return (
     <div
