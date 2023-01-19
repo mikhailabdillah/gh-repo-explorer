@@ -2,11 +2,11 @@ import React from 'react'
 import s from './App.module.css'
 import { useStore } from './store'
 import { RepoLists, SearchBox } from './components'
+import { useUsers } from './hooks/useUsers'
 
 function App() {
-  const isLoading = useStore((state) => state.isLoading)
   const searching = useStore((state) => state.searching)
-  const users = useStore((state) => state.users)
+  const { users, isLoading, error } = useUsers()
 
   return (
     <main className={s.app}>
@@ -29,6 +29,9 @@ function App() {
               </>
             )}
             {isLoading && <p className='text-center mb-4'>Loading...</p>}
+            {error && (
+              <p>Error: Failed to fetch data. Please try again later!</p>
+            )}
             {users &&
               users.items.map((user, idx) => <RepoLists {...user} key={idx} />)}
           </div>

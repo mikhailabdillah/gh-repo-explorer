@@ -1,58 +1,29 @@
-import React, { useEffect, useState } from 'react'
-import { GithubApiRepositoryResponse, GithubUser } from '~/types/api'
-import axios, { RawAxiosRequestConfig } from 'axios'
+import React from 'react'
+import { GithubRepository, GithubUser } from '~/types/api'
 import { Star } from '~/icons'
-import useSWR from 'swr'
 import { Button, Collapse } from '..'
-import { useStore } from '~/store'
+import { useRepositories } from '~/hooks/useRepositories'
 
 type RepoListsProps = GithubUser
 
-const fetcher = (url: string, config: RawAxiosRequestConfig) =>
-  axios.get<GithubApiRepositoryResponse>(url, config).then((res) => res.data)
-
 const RepoLists: React.FC<RepoListsProps> = (props) => {
-  const repository = useStore((state) => state.userRepo)
-  const setRepository = useStore((state) => state.setRepository)
+  const { data, error, size, setSize, pageSize } = useRepositories(props.login)
 
-  const [hasNextPage, setNextPage] = useState(false)
-  const [page, setPage] = useState(1)
-
-  const config: RawAxiosRequestConfig = {
-    params: {
-      page,
-      per_page: 10,
-    },
-  }
-
-  const { data, isLoading } = useSWR(
-    props.login
-      ? [`https://api.github.com/users/${props.login}/repos`, config]
-      : null,
-    ([url, config]) => fetcher(url, config)
-  )
-
-  useEffect(() => {
-    if (data) {
-      setNextPage(data.length === 10)
-
-      const d = repository.find((repo) => repo.user === props.id)
-      d?.repositores?.concat(data)
-      d
-        ? setRepository(d)
-        : setRepository({ user: props.id, repositores: data })
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data])
-
-  const repo = repository.find((d) => d.user === props.id)
+  // @ts-ignore
+  const repositories: GithubRepository[] = data ? [].concat(...data) : []
+  const isLoadingInitialData = !data && !error
+  const isLoadingMore =
+    isLoadingInitialData ||
+    (size > 0 && data && typeof data[size - 1] === 'undefined')
+  const isEmpty = data?.[0]?.length === 0
+  const isReachingEnd =
+    isEmpty || (data && data[data.length - 1]?.length < pageSize)
 
   return (
     <div role={'group'} className='mb-4'>
       <Collapse title={props.login}>
-        {isLoading && <p>Loading...</p>}
-
-        {repo?.repositores?.map((repo) => (
+        {isEmpty && <p>No repository found!</p>}
+        {repositories.map((repo) => (
           <div
             key={repo.name}
             className='relative bg-gray-200 text-left p-4 mb-2'
@@ -68,12 +39,16 @@ const RepoLists: React.FC<RepoListsProps> = (props) => {
           </div>
         ))}
         <div className='text-center'>
-          {hasNextPage && (
-            <Button onClick={() => setPage(page + 1)} disabled={isLoading}>
-              Loadmore
+          {!isReachingEnd && (
+            <Button
+              // eslint-disable-next-line @typescript-eslint/no-misused-promises
+              onClick={() => setSize(size + 1)}
+              disabled={isLoadingMore}
+            >
+              {isLoadingMore ? 'loading...' : 'Load more'}
             </Button>
           )}
-          {!hasNextPage && <span>No more data...</span>}
+          {isReachingEnd && <p>No more data</p>}
         </div>
       </Collapse>
     </div>
