@@ -1,3 +1,5 @@
 export { default as Button } from './Button'
 export { default as Input } from './Input'
 export { default as Collapse } from './Collapse'
+export { default as SearchBox } from './SearchBox'
+export { default as RepoLists } from './RepoLists'

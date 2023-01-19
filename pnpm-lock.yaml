@@ -32,6 +32,7 @@ specifiers:
   typescript: ^4.9.3
   vite: ^4.0.0
   vite-tsconfig-paths: ^4.0.3
+  zustand: ^4.3.2
 
 dependencies:
   '@fontsource/poppins': 4.5.10
@@ -43,6 +44,7 @@ dependencies:
   react-dom: 18.2.0_react@18.2.0
   react-use-measure: 2.1.1_biqbaboplfbrettd7655fr4n2y
   swr: 2.0.0_react@18.2.0
+  zustand: 4.3.2_react@18.2.0
 
 devDependencies:
   '@types/eslint': 8.4.10
@@ -3444,3 +3446,19 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
     dev: true
+
+  /zustand/4.3.2_react@18.2.0:
+    resolution: {integrity: sha512-rd4haDmlwMTVWVqwvgy00ny8rtti/klRoZjFbL/MAcDnmD5qSw/RZc+Vddstdv90M5Lv6RPgWvm1Hivyn0QgJw==}
+    engines: {node: '>=12.7.0'}
+    peerDependencies:
+      immer: '>=9.0'
+      react: '>=16.8'
+    peerDependenciesMeta:
+      immer:
+        optional: true
+      react:
+        optional: true
+    dependencies:
+      react: 18.2.0
+      use-sync-external-store: 1.2.0_react@18.2.0
+    dev: false
